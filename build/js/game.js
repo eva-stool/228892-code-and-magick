@@ -395,18 +395,40 @@ window.Game = (function() {
      * Отрисовка экрана паузы.
      */
     _drawPauseScreen: function() {
+      var context = this.ctx;
+       context.fillStyle = 'rgba(0, 0, 0, 0.7)';
+      context.beginPath();
+      context.moveTo(330, 40);
+      context.lineTo(660, 40);
+      context.lineTo(660, 170);
+      context.lineTo(310, 185);
+      context.lineTo(330, 40);
+      context.closePath();
+      context.fill();
+      context.fillStyle = '#FFFFFF';
+      context.beginPath();
+      context.moveTo(320, 30);
+      context.lineTo(650, 30);
+      context.lineTo(650, 160);
+      context.lineTo(300, 175);
+      context.lineTo(320, 30);
+      context.closePath();
+      context.fill();
+      context.fillStyle = '#000000';
+      context.font = 'bold 16px PT Mono';
+    }
       switch (this.state.currentStatus) {
         case Verdict.WIN:
-          console.log('you have won!');
+          console.log('Ты выйграл!');
           break;
         case Verdict.FAIL:
-          console.log('you have failed!');
+          console.log('Ты проиграл!');
           break;
         case Verdict.PAUSE:
-          console.log('game is on pause!');
+          console.log('Игра на паузе!');
           break;
         case Verdict.INTRO:
-          console.log('welcome to the game! Press Space to start');
+          console.log('Привет! Для старта, жми на пробел');
           break;
       }
     },
