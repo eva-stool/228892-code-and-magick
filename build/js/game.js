@@ -417,6 +417,24 @@ window.Game = (function() {
       context.fillStyle = '#000000';
       context.font = 'bold 16px PT Mono';
     }
+    function wrapText(someContext, text, marginLeft, marginTop, maxWidth, lineHeight) {
+        var words = text.split(' ');
+        var countWords = words.length;
+        var line = '';
+        for (var n = 0; n < countWords; n++) {
+          var testLine = line + words[n] + ' ';
+          var testWidth = context.measureText(testLine).width;
+          if (testWidth > maxWidth) {
+            someContext.fillText(line, marginLeft, marginTop);
+            line = words[n] + ' ';
+            marginTop += lineHeight;
+          } else {
+            line = testLine;
+          }
+        }
+        someContext.fillText(line, marginLeft, marginTop);
+      }
+
       switch (this.state.currentStatus) {
         case Verdict.WIN:
           console.log('Ты выйграл!');
